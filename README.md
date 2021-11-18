@@ -1,1 +1,1 @@
-# Aplicação Web React
+# Aplicação Web com REACT e ASP.NET Core 5.0 Web API, Entity Framework Core 5.0
