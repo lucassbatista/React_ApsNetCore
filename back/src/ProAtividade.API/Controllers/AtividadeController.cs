@@ -31,30 +31,28 @@ namespace ProAtividade.API.Controllers
         }
 
         [HttpPost]
-        public IEnumerable<Atividade> Post(Atividade atividade)
+        public Atividade Post(Atividade atividade)
         {
             _context.Atividades.Add(atividade);
             if(_context.SaveChanges() > 0)
-                return _context.Atividades;
+                return atividade;
             else
                 throw new Exception("Não foi possivel adicionar a atividade");
         }
 
-        [HttpPut]
+        [HttpPut("{id}")]
         public Atividade Put(int id, Atividade atividade)
         {
             if(atividade.Id != id) throw new Exception("Os ids das Atividades não podem ser diferentes");
-
-            if(_context.Atividades.FirstOrDefault(ativ => ativ.Id == id) == null) throw new Exception("A atividade nao existe");
 
             _context.Update(atividade);
             if(_context.SaveChanges() > 0)
                 return _context.Atividades.FirstOrDefault(ativ => ativ.Id == id);
             else
-                throw new Exception("Não foi possivel atualizar a atividade");
+                return new Atividade();
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public bool Delete(int id)
         {
             var atividade = _context.Atividades.FirstOrDefault(ativ => ativ.Id == id);
