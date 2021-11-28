@@ -31,6 +31,7 @@ export default function AtividadeForm(props) {
         props.addAtividade(atividade)
       }
 
+      console.log(atividade);
       setAtividade(atividadeInicial)
     }
 
